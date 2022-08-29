@@ -1,2 +1,2 @@
 # ESP32-Pinoo
-Package that facilitates esp32 cards.
+An Arduino library to use ESP32 cards over Wifi on ESP32 boards.
