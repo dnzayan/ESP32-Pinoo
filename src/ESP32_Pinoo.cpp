@@ -2,10 +2,10 @@
 #include "addons/TokenHelper.h"
 
 #define API_KEY "AIzaSyCH3ElArRaPAoPiIiJFp1_P_wfz7pIaIF8"
-#define FIREBASE_PROJECT_ID "pinoo-bcc1d"
-#define USER_EMAIL "dnzayan@gmail.com"
-#define USER_PASSWORD "123456"
-#define PINOO_ID "261bb931-24de-4778-9ca8-6e246d95c6e3"
+#define FIREBASE_PROJECT_ID "pinoo-bcc1d"                
+#define USER_EMAIL ""     //USER EMAIL GOES HERE
+#define USER_PASSWORD ""  //USER PASSWORD GOES HERE
+#define PINOO_ID ""       //PINOO DEVICE ID GOES HERE
 
 static Network *instance = NULL;
 
