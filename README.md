@@ -6,28 +6,24 @@ Quick start
 -----------
 
 ```
-#include <Arduino.h>
-#include <BLEMidi.h>
+#include "ESP32_Pinoo.h"      
 
-void setup() {
-  Serial.begin(115200);
-  Serial.println("Initializing bluetooth");
-  BLEMidiServer.begin("Basic MIDI device");
-  Serial.println("Waiting for connections...");
-  //BLEMidiServer.enableDebugging();  // Uncomment if you want to see some debugging output from the library
+Network *network;
+
+void initNetwork(){ /* OUR LIBRARY CONNECTS TO WI-FI WITH THE CODES INSIDE  */
+  network = new Network();
+  network->initWiFi();
 }
 
-void loop() {
-  if(BLEMidiServer.isConnected()) {             // If we've got a connection, we send an A4 during one second, at full velocity (127)
-      BLEMidiServer.noteOn(0, 69, 127);
-      delay(1000);
-      BLEMidiServer.noteOff(0, 69, 127);        // Then we stop the note and make a delay of one second before returning to the beginning of the loop
-      delay(1000);
-  }
+void setup(){
+  Serial.begin(115200);
+  Serial.println();
+  
+  initNetwork();
 }
 ```
 
-Check the header file [here](https://github.com/max22-/ESP32-BLE-MIDI/blob/master/src/utility/Midi.h) to view all available MIDI commands and callbacks.
+Check the website [here](https://www.pinoo.io/) to view all available Pinoo Cards.
 Future work
 -----------
 
