@@ -1,6 +1,6 @@
 {
   "name": "ESP32_Pinoo",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "An Arduino library to use Pinoo ESP32 cards over Wifi with Firebase Database.",
   "keywords": "ESP32, Pinoo, ESP32Pinoo, ESP32PINOO, ESP32 PINOO, ESP32 Pinoo, Firebase",
   "authors":
