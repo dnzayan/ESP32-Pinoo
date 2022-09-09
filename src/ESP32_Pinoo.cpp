@@ -35,7 +35,7 @@ void WiFiEventDisconnected(WiFiEvent_t event, WiFiEventInfo_t info){
   Serial.println("WIFI DISCONNECTED!");
   
   WiFi.mode(WIFI_STA); // Wi-Fi' PROVISIONUNG ICIN STATION MODA ALIYORUZ. EĞER TANIMLANMAZSA ESP AÇILIRKEN KENDİNİ "STA+AP"(STATION + ACCESS POINT) MODUNDA BAŞLATIYOR.
-  //wm.resetSettings(); //BU SATIR HER ESP32 SIFIRLANDIĞINDA TEKRARDAN PROVISION ADIMINI YAPABİLMEMİZ İÇİN. KOYMAZSAK BİR KEZ SORUYOR VE O ŞİFREYİ EZBERLİYOR.
+  wm.resetSettings(); //BU SATIR HER ESP32 SIFIRLANDIĞINDA TEKRARDAN PROVISION ADIMINI YAPABİLMEMİZ İÇİN. KOYMAZSAK BİR KEZ SORUYOR VE O ŞİFREYİ EZBERLİYOR.
     
   bool res;
   res = wm.autoConnect("Pinoo_ESP32","12345678"); // ESP'Yİ STATİON OLARAK KULLANIP CİHAZLARIN ONA BU İSİM VE ŞİFREYLE BAĞLANMASINI SAĞLIYORUZ.
@@ -163,8 +163,9 @@ void Network::firestoreDataUpdate(int pin8, int pin9, bool pin4_but){
     content.set("fields/pin4/booleanValue", String(pin4_but).c_str());
     content.set("fields/pin8/doubleValue", String(pin8).c_str());
     content.set("fields/pin9/doubleValue", String(pin9).c_str());
+    content.set("fields/isDeleted/booleanValue", String("false").c_str());
     
-    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin4,pin8,pin9")){
+    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin4,pin8,pin9,isDeleted")){
       FirebaseJson json2;
       json2.setJsonData(fbdo.payload().c_str());
 
@@ -198,8 +199,9 @@ void Network::firestoreDataUpdate(double temp, double humi){
 
     content.set("fields/pin6/doubleValue", String(temp).c_str());
     content.set("fields/pin8/doubleValue", String(humi).c_str());
+    content.set("fields/isDeleted/booleanValue", String("false").c_str());
 
-    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin6,pin8")){
+    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin6,pin8,isDeleted")){
       
       FirebaseJson json2;
       json2.setJsonData(fbdo.payload().c_str());
@@ -232,8 +234,9 @@ void Network::firestoreUpdatePin4(bool pin4_but){
 
     FirebaseJson content;
     content.set("fields/pin4/booleanValue", String(pin4_but).c_str());
+    content.set("fields/isDeleted/booleanValue", String("false").c_str());
 
-    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin4")){
+    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin4,isDeleted")){
       FirebaseJson json2;
       json2.setJsonData(fbdo.payload().c_str());
 
@@ -279,8 +282,9 @@ void Network::firestoreUpdatePin5(bool pin5_but){
 
     FirebaseJson content;
     content.set("fields/pin5/booleanValue", String(pin5_but).c_str());
+    content.set("fields/isDeleted/booleanValue", String("false").c_str());
 
-    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin5")){
+    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin5,isDeleted")){
       FirebaseJson json2;
       json2.setJsonData(fbdo.payload().c_str());
 
@@ -311,8 +315,9 @@ void Network::firestoreUpdatePin6(double pin6){
 
     FirebaseJson content;
     content.set("fields/pin6/doubleValue", String(pin6).c_str());
+    content.set("fields/isDeleted/booleanValue", String("false").c_str());
 
-    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin6")){
+    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin6,isDeleted")){
       
       FirebaseJson json2;
       json2.setJsonData(fbdo.payload().c_str());
@@ -348,8 +353,9 @@ void Network::firestoreUpdatePin8(double pin8){
 
     FirebaseJson content;
     content.set("fields/pin8/doubleValue", String(pin8).c_str());
+    content.set("fields/isDeleted/booleanValue", String("false").c_str());
 
-    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin8")){
+    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin8,isDeleted")){
       
       FirebaseJson json2;
       json2.setJsonData(fbdo.payload().c_str());
@@ -382,8 +388,9 @@ void Network::firestoreUpdatePin9(double pin9){
 
     FirebaseJson content;
     content.set("fields/pin9/doubleValue", String(pin9).c_str());
+    content.set("fields/isDeleted/booleanValue", String("false").c_str());
 
-    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin9")){
+    if(Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), content.raw(), "pin9,isDeleted")){
       
       FirebaseJson json2;
       json2.setJsonData(fbdo.payload().c_str());
@@ -409,6 +416,12 @@ void Network::firestoreUpdatePin9(double pin9){
     }
   }
 }
+
+
+
+
+
+
 
 
 
