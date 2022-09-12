@@ -7,7 +7,7 @@
 
 Network *network;
 
-int buttonPin = 25;  /* WE DEFINED A PIN NUMBER FOR THE BUTTON */
+int buttonPin = 5;  /* WE DEFINED A PIN NUMBER FOR THE BUTTON */
 bool button_send = false;/* WE DEFINED A BOOL FOR THE BUTTON VALUE TO SEND */
 
 void initNetwork(){ /* OUR LIBRARY CONNECTS TO WI-FI WITH THE CODES INSIDE  */
